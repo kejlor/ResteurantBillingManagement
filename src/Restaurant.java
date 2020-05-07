@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -9,12 +10,16 @@ public class Restaurant {
         addCourseToBill(course, 1);
     }
 
-    public void addCourseToBill(Course course, int ammount) {
-        if (orderedFood.containsKey(course)) {
-            ammount = orderedFood.get(course) + ammount;
+    public void addCourseToBill(Course course, int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Illegal amount!");
         }
-        orderedFood.put(course, ammount);
+        if (orderedFood.containsKey(course)) {
+            amount = orderedFood.get(course) + amount;
+        }
+        orderedFood.put(course, amount);
     }
+
 
     public double getBillValue(){
         double billValue = 0;
